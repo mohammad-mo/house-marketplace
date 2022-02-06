@@ -5,6 +5,7 @@ import PrivateRoute from './Components/PrivateRoute'
 import Navbar from './Components/Navbar'
 import Explore from './Pages/Explore'
 import Offers from './Pages/Offers'
+import Category from './Pages/Category'
 import Profile from './Pages/Profile'
 import SignIn from './Pages/SignIn'
 import SignUp from './Pages/SignUp'
@@ -18,6 +19,7 @@ const App = () =>
         <Routes>
           <Route path='/' element={<Explore />} />
           <Route path='/offers' element={<Offers />} />
+          <Route path='/category/:categoryName' element={<Category />} />
           <Route path='/profile' element={<PrivateRoute />} >
             {/* This nested route is Outlet in PrivateRoute */}
             <Route path='/profile' element={<Profile />} />
