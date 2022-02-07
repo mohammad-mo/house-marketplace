@@ -11,6 +11,7 @@ import SignIn from './Pages/SignIn'
 import SignUp from './Pages/SignUp'
 import ForgotPassword from './Pages/ForgotPassword'
 import CreateListing from './Pages/CreateListing'
+import Listing from './Pages/Listing'
 
 const App = () =>
 {
@@ -29,6 +30,7 @@ const App = () =>
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/create-listing' element={<CreateListing />} />
+          <Route path='/category/:categoryName/:listingId' element={<Listing />} />
         </Routes>
         <Navbar />
       </Router>
