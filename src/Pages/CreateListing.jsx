@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import { addDoc, collection, serverTimestamp } from "firebase/firestore"
 import { db } from '../firebase.config'
 import { useNavigate } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid'
@@ -93,7 +94,8 @@ const CreateListing = () =>
                 {
                   const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                   console.log('Upload is ' + progress + '% done')
-                  switch (snapshot.state) {
+                  switch (snapshot.state) 
+                  {
                     case 'paused':
                       console.log('Upload is paused')
                       break
@@ -102,10 +104,12 @@ const CreateListing = () =>
                       break
                   }
                 }, 
-                (err) => {
+                (err) => 
+                {
                     reject(err)
                 }, 
-                () => {
+                () => 
+                {
                   getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => 
                   {
                     resolve(downloadURL)
@@ -116,14 +120,28 @@ const CreateListing = () =>
 
         const imageUrls = await Promise.all(
             [...images].map((image) => storeImage(image))
-        ).catch(() => {
+        ).catch(() => 
+        {
             setLoading(false)
             toast.error('Images not uploaded')
             return
         })
 
+        const formDataCopy = {
+          ...formData,
+          imageUrls,
+          timestamp: serverTimestamp()
+        }
 
+        delete formDataCopy.images
+        delete formDataCopy.address
+        !formDataCopy.offer && delete formDataCopy.discountedPrice
+
+        const docRef = await addDoc(collection(db, 'listings'), formDataCopy)
         setLoading(false)
+
+        toast.success('Listing Saved')
+        navigate(`/category/${formDataCopy.type}/${docRef.id}`)
     }
 
     const onMutate = (e) =>
