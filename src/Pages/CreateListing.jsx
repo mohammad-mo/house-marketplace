@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef } from "react"
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import { db } from '../firebase.config'
 import { useNavigate } from "react-router-dom"
+import { v4 as uuidv4 } from 'uuid'
+import { toast } from "react-toastify"
 import Spinner from '../Components/Spninner'
 
 const CreateListing = () => 
 {
-    const [geolocationEnabled, setGeoLocationEnabled ] = useState(true)
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
         type: 'rent',
@@ -53,14 +56,78 @@ const CreateListing = () =>
 
     }, [isMounted])
 
-    const onSubmit = (e) =>
+    const onSubmit = async (e) =>
     {
         e.preventDefault()
+
+        setLoading(true)
+
+        if (discountedPrice >= regularPrice)
+        {
+            setLoading(false)
+            toast.error('Discounted price need to be less than regular price')
+            return
+        }
+        
+        if (images.length > 6)
+        {
+            setLoading(false)
+            toast.error('Max 6 images')
+            return
+        }
+
+        // Store images in firebase
+        const storeImage = async (image) =>
+        {
+            return new Promise((resolve, reject) =>
+            {
+                const storage = getStorage()
+                const fileName = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`
+
+                const storageRef = ref(storage, 'images/' + fileName)
+
+                const uploadTask = uploadBytesResumable(storageRef, image)
+
+                uploadTask.on('state_changed', 
+                (snapshot) => 
+                {
+                  const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                  console.log('Upload is ' + progress + '% done')
+                  switch (snapshot.state) {
+                    case 'paused':
+                      console.log('Upload is paused')
+                      break
+                    case 'running':
+                      console.log('Upload is running')
+                      break
+                  }
+                }, 
+                (err) => {
+                    reject(err)
+                }, 
+                () => {
+                  getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => 
+                  {
+                    resolve(downloadURL)
+                  })
+                })
+            })
+        }
+
+        const imageUrls = await Promise.all(
+            [...images].map((image) => storeImage(image))
+        ).catch(() => {
+            setLoading(false)
+            toast.error('Images not uploaded')
+            return
+        })
+
+
+        setLoading(false)
     }
 
     const onMutate = (e) =>
     {
-        console.log(`${e.target.id}:`, `${e.target.value}`);
         let boolean = null
 
         if (e.target.value === 'true')
@@ -201,7 +268,7 @@ const CreateListing = () =>
                 className={furnished ? "formButtonActive" : "formButton"}
                 type="button"
                 id="furnished"
-                value={false}
+                value={true}
                 onClick={onMutate}
               >
                 Yes
@@ -230,33 +297,6 @@ const CreateListing = () =>
               onChange={onMutate}
               required
             />
-
-            {!geolocationEnabled && (
-              <div className="formLatLng flex">
-                <div>
-                  <label className="formLabel">Latitude</label>
-                  <input
-                    className="formInputSmall"
-                    type="number"
-                    id="latitude"
-                    value={latitude}
-                    onChange={onMutate}
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="formLabel">Longitude</label>
-                  <input
-                    className="formInputSmall"
-                    type="number"
-                    id="longitude"
-                    value={longitude}
-                    onChange={onMutate}
-                    required
-                  />
-                </div>
-              </div>
-            )}
 
             <label className="formLabel">Offer</label>
             <div className="formButtons">
