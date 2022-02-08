@@ -16,28 +16,26 @@ const Listing = () =>
     const navigate = useNavigate()
     const auth = getAuth()
 
-    useEffect(() =>
+    useEffect(() => 
     {
-        const fetchListing = async () =>
+        const fetchListing = async () => 
         {
-            const docRef = doc(db, 'listings', params.listingId)
-            const docSnap = await getDoc(docRef)
-
-            if (docSnap.exists())
-            {
-                console.log(docSnap.data())
-                setListing(docSnap.data())
-                setLoading(false)
-            }
+          const docRef = doc(db, 'listings', params.listingId)
+          const docSnap = await getDoc(docRef)
+    
+          if (docSnap.exists()) {
+            setListing(docSnap.data())
+            setLoading(false)
+          }
         }
-        
+    
         fetchListing()
-    }, [navigate, params.listingId])
-
-    if (loading) 
-    {
-        <Spinner />
-    }
+      }, [navigate, params.listingId])
+    
+      if (loading) 
+      {
+        return <Spinner />
+      }
     
     return (
       <main>
@@ -99,7 +97,7 @@ const Listing = () =>
           {auth.currentUser?.uid !== listing.userRef && (
             <Link
               to={`/contact/${listing.userRef}?listingName=${listing.name}`}
-              className="primaryButton"
+              className='primaryButton'
             >
               Contact Landlord
             </Link>
