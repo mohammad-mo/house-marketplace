@@ -8,6 +8,7 @@ const Contact = () =>
 {
     const [message, setMessage] = useState('')
     const [landlord, setLandlord] = useState(null)
+    // eslint-disable-next-line
     const [searchParams, setSearchParams] = useSearchParams()
 
     const params = useParams()

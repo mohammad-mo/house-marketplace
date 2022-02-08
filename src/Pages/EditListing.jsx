@@ -28,7 +28,7 @@ const EditListing = () =>
         longitude: 0
     })
 
-    const {type, name, bedrooms, bathrooms, parking, furnished, address, offer, regularPrice, discountedPrice, images, latitude, longitude} = formData
+    const {type, name, bedrooms, bathrooms, parking, furnished, address, offer, regularPrice, discountedPrice, images} = formData
 
     const auth = getAuth()
     const navigate = useNavigate()
@@ -92,7 +92,7 @@ const EditListing = () =>
         {
             isMounted.current = false
         }
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isMounted])
 
     const onSubmit = async (e) =>
@@ -140,6 +140,8 @@ const EditListing = () =>
                     case 'running':
                       console.log('Upload is running')
                       break
+                    default:
+                        break
                   }
                 }, 
                 (err) => 
