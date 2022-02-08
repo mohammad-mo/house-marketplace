@@ -13,6 +13,7 @@ import ForgotPassword from './Pages/ForgotPassword'
 import CreateListing from './Pages/CreateListing'
 import Listing from './Pages/Listing'
 import Contact from './Pages/Contact'
+import EditListing from './Pages/EditListing'
 
 const App = () =>
 {
@@ -31,6 +32,7 @@ const App = () =>
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/create-listing' element={<CreateListing />} />
+          <Route path='/edit-listing/:listingId' element={<EditListing />} />
           <Route path='/category/:categoryName/:listingId' element={<Listing />} />
           <Route path='/contact/:landlordId' element={<Contact />} />
         </Routes>

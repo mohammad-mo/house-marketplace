@@ -101,6 +101,8 @@ const Profile = () =>
         }
     }
 
+    const onEdit = (listingId) => navigate(`/edit-listing/${listingId}`)
+
     return (
         <div className='profile'>
             <header className="profileHeader">
@@ -153,7 +155,7 @@ const Profile = () =>
                         <p className="listingText">Your Listings</p>
                         <ul className='listingList'>
                             {React.Children.toArray(listings.map((listing) => (
-                                <ListingItem listing={listing.data} id={listing.id} onDelete={() => onDelete(listing.id)} />
+                                <ListingItem listing={listing.data} id={listing.id} onDelete={() => onDelete(listing.id)} onEdit={() => onEdit(listing.id)} />
                             )))}
                         </ul>
                     </>
