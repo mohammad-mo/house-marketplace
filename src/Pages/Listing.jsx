@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper"
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -44,8 +44,8 @@ const Listing = () =>
     return (
       <main>
         <Swiper slidesPerView={1} pagination={{ clickable: true }}>
-          {listing.imageUrls.map((url, index) => (
-            <SwiperSlide key={index}>
+          {React.Children.toArray(listing.imageUrls.map((url, index) => (
+            <SwiperSlide>
               <div
                 style={{
                   background: `url(${listing.imageUrls[index]}) center no-repeat`,
@@ -54,7 +54,7 @@ const Listing = () =>
                 className="swiperSlideDiv"
               ></div>
             </SwiperSlide>
-          ))}
+          )))}
         </Swiper>
 
         <div
