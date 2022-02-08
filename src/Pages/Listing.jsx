@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper"
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper-bundle.css'
 import { getDoc, doc } from "firebase/firestore"
 import { getAuth } from 'firebase/auth'
 import { db } from "../firebase.config"
 import Spinner from "../Components/Spninner"
 import ShareIcon from '../assets/svg/shareIcon.svg'
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
 const Listing = () => 
 {
@@ -39,15 +43,30 @@ const Listing = () =>
     
     return (
       <main>
-        {/* Slidshow */}
+        <Swiper slidesPerView={1} pagination={{ clickable: true }}>
+          {listing.imageUrls.map((url, index) => (
+            <SwiperSlide key={index}>
+              <div
+                style={{
+                  background: `url(${listing.imageUrls[index]}) center no-repeat`,
+                  backgroundSize: 'cover'
+                }}
+                className="swiperSlideDiv"
+              ></div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
         <div
           className="shareIconDiv"
-          onClick={() => {
-            navigator.clipboard.writeText(window.location.href);
-            setShareLinkCopied(true);
-            setTimeout(() => {
-              setShareLinkCopied(false);
-            }, 2000);
+          onClick={() => 
+            {
+              navigator.clipboard.writeText(window.location.href)
+              setShareLinkCopied(true)
+              setTimeout(() =>
+             {
+              setShareLinkCopied(false)
+            }, 2000)
           }}
         >
           <img src={ShareIcon} alt="share icon" />
@@ -91,20 +110,17 @@ const Listing = () =>
             <li>{listing.furnished && "Furnished"}</li>
           </ul>
 
-          <p className="listingLocationTitle">Location</p>
-          {/* Map */}
-
           {auth.currentUser?.uid !== listing.userRef && (
             <Link
               to={`/contact/${listing.userRef}?listingName=${listing.name}`}
-              className='primaryButton'
+              className="primaryButton"
             >
               Contact Landlord
             </Link>
           )}
         </div>
       </main>
-    )
+    );
 }
  
 export default Listing
