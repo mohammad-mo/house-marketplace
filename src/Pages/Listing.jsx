@@ -58,7 +58,7 @@ const Listing = () =>
         </Swiper>
 
         <div
-          className="shareIconDiv"
+          className="cursor-pointer fixed top-[3%] right-[5%] z-10 bg-white rounded-3xl w-12 h-12 flex justify-center items-center"
           onClick={() => 
             {
               navigator.clipboard.writeText(window.location.href)
@@ -72,10 +72,10 @@ const Listing = () =>
           <img src={ShareIcon} alt="share icon" />
         </div>
 
-        {shareLinkCopied && <p className="linkCopied">Link Copied!</p>}
+        {shareLinkCopied && <p className="fixed top-[12%] right-[5%] z-10 bg-white rounded-3xl py-2 px-4 font-semibold">Link Copied!</p>}
 
-        <div className="listingDetails">
-          <p className="listingName">
+        <div className="m-4 lg:m-12">
+          <p className="font-semibold text-2xl mb-2">
             {listing.name} - $
             {listing.offer
               ? listing.discountedPrice
@@ -85,35 +85,35 @@ const Listing = () =>
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </p>
-          <p className="listingLocation">{listing.address}</p>
-          <p className="listingType">
+          <p className="mt-0 font-semibold mb-2">{listing.address}</p>
+          <p className="py-1 px-2 bg-green-500 text-white rounded-3xl inline font-semibold text-sm mr-2">
             For {listing.type === "rent" ? "Rent" : "Sale"}
           </p>
           {listing.offer && (
-            <p className="discountPrice">
+            <p className="py-1 px-2 bg-slate-900 text-white rounded-3xl inline font-semibold text-sm">
               ${listing.regularPrice - listing.discountedPrice} discount
             </p>
           )}
 
-          <ul className="listingDetailsList">
-            <li>
+          <ul className="mt-2 p-0 list-none">
+            <li className="my-1 mx-0 font-medium opacity-80">
               {listing.bedrooms > 1
                 ? `${listing.bedrooms} Bedrooms`
                 : "1 Bedroom"}
             </li>
-            <li>
+            <li className="my-1 mx-0 font-medium opacity-80">
               {listing.bathrooms > 1
                 ? `${listing.bathrooms} Bathrooms`
                 : "1 Bathroom"}
             </li>
-            <li>{listing.parking && "Parking Spot"}</li>
-            <li>{listing.furnished && "Furnished"}</li>
+            <li className="my-1 mx-0 font-medium opacity-80">{listing.parking && "Parking Spot"}</li>
+            <li className="my-1 mx-0 font-medium opacity-80">{listing.furnished && "Furnished"}</li>
           </ul>
 
           {auth.currentUser?.uid !== listing.userRef && (
             <Link
               to={`/contact/${listing.userRef}?listingName=${listing.name}`}
-              className="primaryButton"
+              className="cursor-pointer bg-green-500 rounded-2xl py-3 px-8 text-white font-semibold text-xl w-[80%] my-12 mx-auto flex justify-center items-center"
             >
               Contact Landlord
             </Link>

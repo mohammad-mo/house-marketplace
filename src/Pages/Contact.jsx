@@ -39,25 +39,25 @@ const Contact = () =>
     }
 
     return (
-        <div className="pageContainer">
-            <header>
-                <p className="pageHeader">Contact Landlord</p>
+        <div className="m-4 lg:m-12">
+            <header className="my-8">
+                <p className="text-3xl font-semibold">Contact Landlord</p>
             </header>
 
             {landlord !== null && (
                 <main>
-                    <div className="contactLandlord">
-                        <p className="landlordName">{landlord?.name}</p>
+                    <div className="mt-8 flex items-center">
+                        <p className="font-semibold text-xl">{landlord?.name}</p>
                     </div>
 
-                    <form className="messageForm">
-                        <div className="messageDiv">
-                            <label htmlFor="message" className="messageLabel">Message</label>
-                            <textarea name="message" id="message" className="textarea" value={message} onChange={onChange}></textarea>
+                    <form className="mt-2">
+                        <div className="mt-8 flex flex-col mb-16">
+                            <label htmlFor="message" className="label font-semibold">Message</label>
+                            <textarea name="message" id="message" className="textarea textarea-primary" value={message} onChange={onChange}></textarea>
                         </div>
 
                         <a href={`mailto:${landlord.email}?Subject=${searchParams.get('listingName')}&body=${message}`}>
-                            <button type="button" className="primaryButton">Send Message</button>
+                            <button type="button" className="cursor-pointer bg-green-500 rounded-2xl py-3 px-8 text-white font-semibold text-xl w-[80%] my-12 mx-auto flex justify-center items-center">Send Message</button>
                         </a>
                     </form>
                 </main>

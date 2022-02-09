@@ -90,16 +90,16 @@ const Category = () =>
         }
 
     return (
-        <div className="category">
-            <header>
-                <p className="pageHeader">
+        <div className="m-4 lg:m-12">
+            <header className="flex justify-between items-center mb-8">
+                <p className="text-3xl font-extrabold">
                     {params.categoryName === 'rent' ? 'Places for rent' : 'Places for sale'}
                 </p>
             </header>
             {loading ? <Spinner /> : listings && listings.length > 0 ?
             <>
                 <main>
-                    <ul className="categoryListings">
+                    <ul className="p-0">
                         {React.Children.toArray(listings.map((listing) => (
                             <ListingItem listing={listing.data} id={listing.id} />
                         )))}
@@ -110,7 +110,7 @@ const Category = () =>
                 <br />
 
                 {lastFetchedListing && (
-                    <p className="loadMore" onClick={onFetchMoreListings}>Load More</p>
+                     <button className="btn btn-sm flex justify-center mx-auto" onClick={onFetchMoreListings}>Load More</button>
                 )}
 
             </> : <p>No listing for {params.categoryName}</p>}

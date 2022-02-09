@@ -88,9 +88,9 @@ const Offers = () =>
         }
 
     return (
-      <div className="category">
-        <header>
-          <p className="pageHeader">
+      <div className="m-4 lg:m-12">
+        <header className="my-8">
+          <p className="text-3xl font-semibold">
             Offers
           </p>
         </header>
@@ -100,7 +100,7 @@ const Offers = () =>
         ) : listings && listings.length > 0 ? (
           <>
             <main>
-              <ul className="categoryListings">
+              <ul className="p-0">
                 {React.Children.toArray(
                   listings.map((listing) => (
                     <ListingItem listing={listing.data} id={listing.id} />
@@ -113,7 +113,7 @@ const Offers = () =>
             <br />
 
             {lastFetchedListing && (
-                <p className="loadMore" onClick={onFetchMoreListings}>Load More</p>
+                <button className="btn btn-sm flex justify-center mx-auto" onClick={onFetchMoreListings}>Load More</button>
             )}
           </>
         ) : (

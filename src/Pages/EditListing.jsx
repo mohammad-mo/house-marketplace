@@ -223,18 +223,18 @@ const EditListing = () =>
     }
 
     return (
-      <div className="profile">
-        <header>
-          <p className="pageHeader">Edit Listing</p>
+      <div className="m-4 lg:m-12">
+        <header className="my-8">
+          <p className="text-3xl font-semibold">Edit Listing</p>
         </header>
 
         <main>
           <form onSubmit={onSubmit}>
-            <label className="formLabel">Sell / Rent</label>
-            <div className="formButtons">
+            <label className="label font-semibold">Sell / Rent</label>
+            <div className="flex">
               <button
                 type="button"
-                className={type === "sale" ? "formButtonActive" : "formButton"}
+                className={type === "sale" ? "py-3 px-12 bg-green-500 text-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center" : "py-3 px-12 bg-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center"}
                 id="type"
                 value="sale"
                 onClick={onMutate}
@@ -243,7 +243,7 @@ const EditListing = () =>
               </button>
               <button
                 type="button"
-                className={type === "rent" ? "formButtonActive" : "formButton"}
+                className={type === "rent" ? "py-3 px-12 bg-green-500 text-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center" : "py-3 px-12 bg-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center"}
                 id="type"
                 value="rent"
                 onClick={onMutate}
@@ -252,10 +252,10 @@ const EditListing = () =>
               </button>
             </div>
 
-            <label className="formLabel">Name</label>
+            <label className="label font-semibold">Name</label>
             <input
               type="text"
-              className="formInputName"
+              className="input w-72 mb-4 rounded-2xl shadow-md"
               id="name"
               value={name}
               onChange={onMutate}
@@ -264,11 +264,11 @@ const EditListing = () =>
               required
             />
 
-            <div className="formRooms flex">
-              <div>
-                <label className="formLabel">Bedrooms</label>
+            <div className="flex">
+              <div className="mr-4">
+                <label className="label font-semibold">Bedrooms</label>
                 <input
-                  className="formInputSmall"
+                  className="input w-20 mb-4 rounded-2xl shadow-md"
                   type="number"
                   id="bedrooms"
                   value={bedrooms}
@@ -279,9 +279,9 @@ const EditListing = () =>
                 />
               </div>
               <div>
-                <label className="formLabel">Bathrooms</label>
+                <label className="label font-semibold">Bathrooms</label>
                 <input
-                  className="formInputSmall"
+                  className="input w-20 mb-4 rounded-2xl shadow-md"
                   type="number"
                   id="bathrooms"
                   value={bathrooms}
@@ -293,10 +293,10 @@ const EditListing = () =>
               </div>
             </div>
 
-            <label className="formLabel">Parking spot</label>
-            <div className="formButtons">
+            <label className="label font-semibold">Parking spot</label>
+            <div className="flex">
               <button
-                className={parking ? "formButtonActive" : "formButton"}
+                className={parking ? "py-3 px-12 bg-green-500 text-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center" : "py-3 px-12 bg-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center"}
                 type="button"
                 id="parking"
                 value={true}
@@ -309,8 +309,8 @@ const EditListing = () =>
               <button
                 className={
                   !parking && parking !== null
-                    ? "formButtonActive"
-                    : "formButton"
+                    ? "py-3 px-12 bg-green-500 text-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center" 
+                    : "py-3 px-12 bg-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center"
                 }
                 type="button"
                 id="parking"
@@ -321,10 +321,10 @@ const EditListing = () =>
               </button>
             </div>
 
-            <label className="formLabel">Furnished</label>
-            <div className="formButtons">
+            <label className="label font-semibold">Furnished</label>
+            <div className="flex">
               <button
-                className={furnished ? "formButtonActive" : "formButton"}
+                className={furnished ? "py-3 px-12 bg-green-500 text-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center" : "py-3 px-12 bg-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center"}
                 type="button"
                 id="furnished"
                 value={true}
@@ -335,8 +335,8 @@ const EditListing = () =>
               <button
                 className={
                   !furnished && furnished !== null
-                    ? "formButtonActive"
-                    : "formButton"
+                    ? "py-3 px-12 bg-green-500 text-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center" 
+                    : "py-3 px-12 bg-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center"
                 }
                 type="button"
                 id="furnished"
@@ -347,9 +347,9 @@ const EditListing = () =>
               </button>
             </div>
 
-            <label className="formLabel">Address</label>
+            <label className="label font-semibold">Address</label>
             <textarea
-              className="formInputAddress"
+              className="textarea w-72"
               type="text"
               id="address"
               value={address}
@@ -357,10 +357,10 @@ const EditListing = () =>
               required
             />
 
-            <label className="formLabel">Offer</label>
-            <div className="formButtons">
+            <label className="label font-semibold">Offer</label>
+            <div className="flex">
               <button
-                className={offer ? "formButtonActive" : "formButton"}
+                className={offer ? "py-3 px-12 bg-green-500 text-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center" : "py-3 px-12 bg-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center"}
                 type="button"
                 id="offer"
                 value={true}
@@ -370,7 +370,7 @@ const EditListing = () =>
               </button>
               <button
                 className={
-                  !offer && offer !== null ? "formButtonActive" : "formButton"
+                  !offer && offer !== null ? "py-3 px-12 bg-green-500 text-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center" : "py-3 px-12 bg-white font-semibold rounded-2xl text-base mt-2 mr-2 flex justify-center items-center"
                 }
                 type="button"
                 id="offer"
@@ -380,10 +380,10 @@ const EditListing = () =>
                 No
               </button>
             </div>
-            <label className="formLabel">Regular Price</label>
-            <div className="formPriceDiv">
+            <label className="label font-semibold">Regular Price</label>
+            <div className="flex items-center mb-4">
               <input
-                className="formInputSmall"
+                className="input w-36 rounded-2xl shadow-md"
                 type="number"
                 id="regularPrice"
                 value={regularPrice}
@@ -392,14 +392,14 @@ const EditListing = () =>
                 max="750000000"
                 required
               />
-              {type === "rent" && <p className="formPriceText">$ / Month</p>}
+              {type === "rent" && <p className="ml-4 font-semibold">$ / Month</p>}
             </div>
 
             {offer && (
               <>
-                <label className="formLabel">Discounted Price</label>
+                <label className="label font-semibold">Discounted Price</label>
                 <input
-                  className="formInputSmall"
+                  className="input w-36 rounded-2xl shadow-md"
                   type="number"
                   id="discountedPrice"
                   value={discountedPrice}
@@ -411,21 +411,23 @@ const EditListing = () =>
               </>
             )}
 
-            <label className="formLabel">Images</label>
-            <p className="imagesInfo">
+            <label className="label font-semibold">Images</label>
+            <p className="text-sm opacity-80 mb-4">
               The first image will be the cover (max 6).
             </p>
-            <input
-              className="formInputFile"
-              type="file"
-              id="images"
-              onChange={onMutate}
-              max="6"
-              accept=".jpg,.png,.jpeg"
-              multiple
-              required
-            />
-            <button type="submit" className="primaryButton createListingButton">
+            <div className="w-full bg-white p-4 rounded-2xl">
+              <input
+                className="formInputFile"
+                type="file"
+                id="images"
+                onChange={onMutate}
+                max="6"
+                accept=".jpg,.png,.jpeg"
+                multiple
+                required
+              />
+            </div>
+            <button type="submit" className="cursor-pointer bg-green-500 rounded-2xl py-3 px-8 text-white font-semibold text-xl w-[80%] my-12 mx-auto flex justify-center items-center">
               Edit Listing
             </button>
           </form>

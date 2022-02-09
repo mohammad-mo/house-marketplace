@@ -7,7 +7,7 @@ import bathtubIcon from '../assets/svg/bathtubIcon.svg'
 const ListingItem = ({ listing, id, onDelete, onEdit }) => 
 {
     return (
-      <li className="flex flex-col justify-between items-start sm:items-center sm:flex-row mb-4 relative">
+      <li className="flex flex-col justify-between items-start sm:items-center sm:flex-row mb-4 relative rounded-2xl">
         <Link
           to={`/category/${listing.type}/${id}`}
           className="contents"
@@ -15,9 +15,9 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) =>
           <img
             src={listing.imageUrls[0]}
             alt={listing.name}
-            className="w-full sm:w-1/3 h-28 rounded-3xl object-cover lg:h-52"
+            className="w-full min-h-[35vw] sm:min-h-0 sm:w-1/3 h-28 rounded-2xl object-cover lg:h-52"
           />
-          <div className="w-full sm:w-2/3 pl-3 mt-4 sm:mt-0 items-center">
+          <div className="w-full sm:w-2/3 pl-0 sm:pl-3 mt-4 sm:mt-0 items-center">
             <p className="font-semibold text-xs opacity-80 mb-0">{listing.address}</p>
             <p className="font-semibold text-xl m-0">{listing.name}</p>
             <p className="font-semibold text-lg text-green-500 my-2 flex items-center">
@@ -44,16 +44,18 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) =>
           </div>
         </Link>
 
-        <div className="flex flex-row sm:flex-col justify-center w-full sm:w-auto mt-4 sm:mt-0">
+        <div className="flex flex-row sm:flex-col justify-center w-full sm:w-auto mt-6 sm:mt-0">
           {onDelete && (
-              <DeleteIcon 
-                  className='cursor-pointer' 
-                  fill='rgb(231, 76, 60)' 
-                  onClick={() => onDelete(listing, id)} 
-              />
+              // <DeleteIcon 
+              //     className='cursor-pointer' 
+              //     fill='rgb(231, 76, 60)' 
+              //     onClick={() => onDelete(listing, id)} 
+              // />
+              <button className="btn btn-sm btn-accent p-2 mr-2 sm:mb-1 sm:mr-0" onClick={() => onDelete(listing, id)}>Delete</button>
           )}
           {onEdit && (
-            <EditIcon className='cursor-pointer' onClick={() => onEdit(id)} />
+            // <EditIcon className='cursor-pointer' onClick={() => onEdit(id)} />
+            <button className="btn btn-sm p-2" onClick={() => onEdit(id)}>Edit</button>
           )}
         </div>
       </li>

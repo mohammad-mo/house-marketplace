@@ -60,15 +60,16 @@ const SignUp = () =>
 
     return (
       <>
-        <div className='pageContainer'>
-          <header>
-            <p className='pageHeader'>Welcome Back!</p>
+        <div className='m-4 lg:m-12'>
+          <header className="my-8">
+            <p className='text-3xl font-extrabold'>Welcome Back!</p>
           </header>
           <main>
             <form onSubmit={onSubmit}>
               <input
+                autoFocus
                 type='text'
-                className='nameInput'
+                className='input w-full mb-4 rounded-2xl shadow-md'
                 placeholder='Name'
                 id='name'
                 value={name}
@@ -76,17 +77,17 @@ const SignUp = () =>
               />
               <input
                 type='email'
-                className='emailInput'
+                className='input w-full mb-4 rounded-2xl shadow-md'
                 placeholder='Email'
                 id='email'
                 value={email}
                 onChange={onChange}
               />
 
-              <div className='passwordInputDiv'>
+              <div className='relative'>
                 <input
                   type={showPassword ? 'text' : 'password'}
-                  className='passwordInput'
+                  className='input w-full mb-8 rounded-2xl shadow-md'
                   placeholder='Password'
                   id='password'
                   value={password}
@@ -95,22 +96,22 @@ const SignUp = () =>
                 <img
                   src={visibilityIcon}
                   alt='show password icon'
-                  className='showPassword'
+                  className='cursor-pointer absolute -top-0.5 right-0.5 p-4'
                   onClick={() => setShowPassword((prevState) => !prevState)}
                 />
               </div>
-              <Link to='/forgot-password' className='forgotPasswordLink'>
+              <Link to='/forgot-password' className='block cursor-pointer text-green-500 font-semibold text-right'>
                 Forgot Password
               </Link>
-              <div className='signUpBar'>
-                <p className='signUpText'>Sign Up</p>
-                <button className='signUpButton'>
+              <div className='flex justify-between items-center mt-12 lg:justify-start'>
+                <p className='text-2xl font-bold cursor-pointer lg:pr-12'>Sign Up</p>
+                <button className='flex justify-center items-center w-12 h-12 rounded-3xl bg-green-500 cursor-pointer'>
                   <ArrowRightIcon fill='#fff' width='34px' height='34px' />
                 </button>
               </div>
             </form>
             <OAuth />
-            <Link to='/sign-in' className='registerLink'>
+            <Link to='/sign-in' className='block mt-20 text-green-500 font-semibold text-center mb-28'>
               Sign In Insted
             </Link>
           </main>

@@ -27,24 +27,25 @@ const ForgotPassword = () =>
     }
 
     return (
-        <div className="pageContainer">
-            <header>
-                <p className="pageHeader">Forgot Password</p>
+        <div className="m-4 lg:m-12">
+            <header className="my-8">
+                <p className="text-3xl font-extrabold">Forgot Password</p>
+            </header>
+
                 <main>
                     <form onSubmit={onSubmit}>
-                        <input type="email" className="emailInput" placeholder="Email" value={email} onChange={onChange}/>
-                        <Link className="forgotPasswordLink" to='/sign-in'>
+                        <input autoFocus type="email" className="input w-full mb-8 rounded-2xl shadow-md" placeholder="Email" value={email} onChange={onChange}/>
+                        <Link className="block cursor-pointer text-green-500 font-semibold text-right" to='/sign-in'>
                             Sign IN
                         </Link>
-                        <div className="signInBar">
-                            <div className="signInText">Send Reset Link</div>
-                            <button className="signInButton">
+                        <div className="flex justify-between items-center mt-12">
+                            <div className="text-2xl font-bold cursor-pointer">Send Reset Link</div>
+                            <button className="flex justify-center items-center w-12 h-12 rounded-3xl bg-green-500 cursor-pointer">
                                 <ArrowRightIcon fill='#fff' width='34px' height='34px' />
                             </button>
                         </div>
                     </form>
                 </main>
-            </header>
         </div>
     )
 }

@@ -105,7 +105,7 @@ const Profile = () =>
 
     return (
         <div className='m-4 lg:m-12'>
-            <header className="flex justify-between items-center mb-8">
+            <header className="flex justify-between items-center my-8">
                 <p className="text-3xl font-extrabold">My Profile</p>
                 <button type='button' className="btn btn-sm btn-primary rounded-2xl" onClick={onLogout}>Logout</button>
             </header>
@@ -128,7 +128,7 @@ const Profile = () =>
                         <input 
                             type="text" 
                             id='name'
-                            className={!changeDetails ? 'input my-1 font-semibold text-base w-full p-1 rounded-md' : 'input my-1 font-semibold text-base w-full bg-gray-200 p-1 rounded-md outline-hidden'}
+                            className={!changeDetails ? 'input my-1 font-semibold text-base w-full p-1 rounded-md shadow-sm' : 'input my-1 font-semibold text-base w-full bg-gray-200 p-1 rounded-md outline-hidden'}
                             disabled={!changeDetails}
                             value={name}
                             onChange={onChange}
@@ -136,7 +136,7 @@ const Profile = () =>
                         <input 
                             type="text" 
                             id='email'
-                            className={!changeDetails ? 'input my-1 font-semibold text-base w-full p-1 rounded-md' : 'input my-1 font-semibold text-base w-full bg-gray-200 p-1 rounded-md outline-hidden'}
+                            className={!changeDetails ? 'input my-1 font-semibold text-base w-full p-1 rounded-md shadow--sm' : 'input my-1 font-semibold text-base w-full bg-gray-200 p-1 rounded-md outline-hidden'}
                             disabled={!changeDetails}
                             value={email}
                             onChange={onChange}
@@ -144,7 +144,7 @@ const Profile = () =>
                     </form>
                 </div>
 
-                <Link to='/create-listing' className='flex justify-between items-center max-w-lg bg-white rounded-2xl py-4 px-4 mt-8 font-semibold'>
+                <Link to='/create-listing' className='create-listing-padding flex justify-between items-center max-w-lg bg-white rounded-2xl p-4 mt-8 font-semibold'>
                     <img src={homeIcon} alt="home icon" />
                     <p>Sell or rent your home</p>
                     <img src={arrowRight} alt="arrow right icon" />
@@ -152,7 +152,7 @@ const Profile = () =>
 
                 {!loading && listings?.length > 0 && (
                     <>
-                        <p className="my-8 font-semibold">Your Listings</p>
+                        <p className="mt-8 mb-4 font-semibold">Your Listings</p>
                         <ul className='listingsList'>
                             {React.Children.toArray(listings.map((listing) => (
                                 <ListingItem listing={listing.data} id={listing.id} onDelete={() => onDelete(listing.id)} onEdit={() => onEdit(listing.id)} />
