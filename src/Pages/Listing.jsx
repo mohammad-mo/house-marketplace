@@ -58,7 +58,7 @@ const Listing = () =>
         </Swiper>
 
         <div
-          className="cursor-pointer fixed top-[3%] right-[5%] z-10 bg-white rounded-3xl w-12 h-12 flex justify-center items-center"
+          className="cursor-pointer fixed top-[15px] right-[5%] z-10 bg-white rounded-3xl w-12 h-12 flex justify-center items-center"
           onClick={() => 
             {
               navigator.clipboard.writeText(window.location.href)
@@ -72,7 +72,7 @@ const Listing = () =>
           <img src={ShareIcon} alt="share icon" />
         </div>
 
-        {shareLinkCopied && <p className="fixed top-[12%] right-[5%] z-10 bg-white rounded-3xl py-2 px-4 font-semibold">Link Copied!</p>}
+        {shareLinkCopied && <p className="fixed top-[80px] right-[5%] z-10 bg-white rounded-3xl py-2 px-4 font-semibold">Link Copied!</p>}
 
         <div className="m-4 lg:m-12">
           <p className="font-semibold text-2xl mb-2">
