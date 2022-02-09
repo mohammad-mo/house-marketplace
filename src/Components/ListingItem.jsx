@@ -7,20 +7,20 @@ import bathtubIcon from '../assets/svg/bathtubIcon.svg'
 const ListingItem = ({ listing, id, onDelete, onEdit }) => 
 {
     return (
-      <li className="categoryListing">
+      <li className="flex flex-col justify-between items-start sm:items-center sm:flex-row mb-4 relative">
         <Link
           to={`/category/${listing.type}/${id}`}
-          className="categoryListingLink"
+          className="contents"
         >
           <img
             src={listing.imageUrls[0]}
             alt={listing.name}
-            className="categoryListingImg"
+            className="w-full sm:w-1/3 h-28 rounded-3xl object-cover lg:h-52"
           />
-          <div className="categoryListingDetails">
-            <p className="categoryListingLocation">{listing.location}</p>
-            <p className="categoryListingName">{listing.name}</p>
-            <p className="categoryListingPrice">
+          <div className="w-full sm:w-2/3 pl-3 mt-4 sm:mt-0 items-center">
+            <p className="font-semibold text-xs opacity-80 mb-0">{listing.address}</p>
+            <p className="font-semibold text-xl m-0">{listing.name}</p>
+            <p className="font-semibold text-lg text-green-500 my-2 flex items-center">
               ${listing.offer 
                 ? listing.discountedPrice
                     .toString()
@@ -31,29 +31,31 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) =>
                 }
                 {listing.type === 'rent' && ' / Month'}
             </p>
-            <div className="categoryListingInfoDiv">
+            <div className="flex justify-between max-w-xs">
                 <img src={bedIcon} alt="bed" />
-                <p className="categoryListingInfoText">
+                <p className="font-medium text-sm">
                     {listing.bedrooms > 1 ? `${listing.bedrooms} Bedrooms` : '1 Bedroom'}
                 </p>
                 <img src={bathtubIcon} alt="bath" />
-                <p className="categoryListingInfoText">
+                <p className="font-medium text-sm">
                     {listing.bathrooms > 1 ? `${listing.bathrooms} Bathrooms` : '1 Bathroom'}
                 </p>
             </div>
           </div>
         </Link>
 
-        {onDelete && (
-            <DeleteIcon 
-                className='removeIcon' 
-                fill='rgb(231, 76, 60)' 
-                onClick={() => onDelete(listing, id)} 
-            />
-        )}
-        {onEdit && (
-          <EditIcon className="editIcon" onClick={() => onEdit(id)} />
-        )}
+        <div className="flex flex-row sm:flex-col justify-center w-full sm:w-auto mt-4 sm:mt-0">
+          {onDelete && (
+              <DeleteIcon 
+                  className='cursor-pointer' 
+                  fill='rgb(231, 76, 60)' 
+                  onClick={() => onDelete(listing, id)} 
+              />
+          )}
+          {onEdit && (
+            <EditIcon className='cursor-pointer' onClick={() => onEdit(id)} />
+          )}
+        </div>
       </li>
     )
 }

@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap');
 * {
   box-sizing: border-box;
 }
@@ -818,4 +822,21 @@ button {
   margin-left: 1rem;
   font-size: 0.8rem;
   opacity: 0.75;
+} */
+
+body {
+  margin-bottom: 6rem;
+}
+
+.removeIcon {
+  cursor: pointer;
+  position: absolute;
+  top: -3%;
+  right: -2%;
+}
+.editIcon {
+  cursor: pointer;
+  position: absolute;
+  top: -3.4%;
+  right: 20px;
 }

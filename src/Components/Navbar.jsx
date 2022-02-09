@@ -14,18 +14,18 @@ const Navbar = () =>
     }
 
     return (
-        <footer className='navbar'>
-            <nav className="navbarNav">
-                <ul className="navbarListItems">
-                    <li className="navbarListItem" onClick={() => navigate('/')}>
+        <footer className='fixed left-0 right-0 bottom-0 h-20 z-50 flex justify-center items-center bg-white'>
+            <nav className="w-full mt-3 overflow-hidden">
+                <ul className="m-0 p-0 flex justify-evenly items-center">
+                    <li className="cursor-pointer flex flex-col items-center" onClick={() => navigate('/')}>
                         <ExploreIcon fill={pathMatchRoute('/') ? '#2c2c2c' : '#8f8f8f'} width='36px' height='36px' />
                         <p className={pathMatchRoute('/') ? 'navbarListItemNameActive' : 'navbarListItemName'}>Explore</p>
                     </li>
-                    <li className="navbarListItem" onClick={() => navigate('/offers')}>
+                    <li className="cursor-pointer flex flex-col items-center" onClick={() => navigate('/offers')}>
                         <OfferIcon fill={pathMatchRoute('/offers') ? '#2c2c2c' : '#8f8f8f'} width='36px' height='36px' />
                         <p className={pathMatchRoute('/offers') ? 'navbarListItemNameActive' : 'navbarListItemName'}>Offers</p>
                     </li>
-                    <li className="navbarListItem" onClick={() => navigate('/profile')}>
+                    <li className="cursor-pointer flex flex-col items-center" onClick={() => navigate('/profile')}>
                         <PersonOutlineIcon fill={pathMatchRoute('/profile') ? '#2c2c2c' : '#8f8f8f'} width='36px' height='36px' />
                         <p className={pathMatchRoute('/profile') ? 'navbarListItemNameActive' : 'navbarListItemName'}>Profile</p>
                     </li>

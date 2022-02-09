@@ -104,31 +104,31 @@ const Profile = () =>
     const onEdit = (listingId) => navigate(`/edit-listing/${listingId}`)
 
     return (
-        <div className='profile'>
-            <header className="profileHeader">
-                <p className="pageHeader">My Profile</p>
-                <button type='button' className="logOut" onClick={onLogout}>Logout</button>
+        <div className='m-4 lg:m-12'>
+            <header className="flex justify-between items-center mb-8">
+                <p className="text-3xl font-extrabold">My Profile</p>
+                <button type='button' className="btn btn-sm btn-primary rounded-2xl" onClick={onLogout}>Logout</button>
             </header>
             <main>
-                <div className="profileDetailsHeader">
-                    <p className="profileDetailsText">Personal Details</p>
+                <div className="flex justify-between max-w-lg mb-4">
+                    <p className="font-semibold">Personal Details</p>
                     <p
-                        className="changePersonalDetails"
+                        className="cursor-pointer font-semibold text-green-500"
                         onClick={() => {
                             changeDetails && onSubmit()
                             setChangeDetails((prevState) => !prevState)
                         }}    
                     >
-                        {changeDetails ? 'done' : 'change'}
+                        {changeDetails ? 'Done' : 'Change'}
                     </p>
                 </div>
 
-                <div className="profileCard">
+                <div className="bg-white rounded-2xl p-4 max-w-lg">
                     <form>
                         <input 
                             type="text" 
                             id='name'
-                            className={!changeDetails ? 'profileName' : 'profileNameActive'}
+                            className={!changeDetails ? 'input my-1 font-semibold text-base w-full p-1 rounded-md' : 'input my-1 font-semibold text-base w-full bg-gray-200 p-1 rounded-md outline-hidden'}
                             disabled={!changeDetails}
                             value={name}
                             onChange={onChange}
@@ -136,7 +136,7 @@ const Profile = () =>
                         <input 
                             type="text" 
                             id='email'
-                            className={!changeDetails ? 'profileEmail' : 'profileEmailActive'}
+                            className={!changeDetails ? 'input my-1 font-semibold text-base w-full p-1 rounded-md' : 'input my-1 font-semibold text-base w-full bg-gray-200 p-1 rounded-md outline-hidden'}
                             disabled={!changeDetails}
                             value={email}
                             onChange={onChange}
@@ -144,7 +144,7 @@ const Profile = () =>
                     </form>
                 </div>
 
-                <Link to='/create-listing' className='createListing'>
+                <Link to='/create-listing' className='flex justify-between items-center max-w-lg bg-white rounded-2xl py-4 px-4 mt-8 font-semibold'>
                     <img src={homeIcon} alt="home icon" />
                     <p>Sell or rent your home</p>
                     <img src={arrowRight} alt="arrow right icon" />
@@ -152,8 +152,8 @@ const Profile = () =>
 
                 {!loading && listings?.length > 0 && (
                     <>
-                        <p className="listingText">Your Listings</p>
-                        <ul className='listingList'>
+                        <p className="my-8 font-semibold">Your Listings</p>
+                        <ul className='listingsList'>
                             {React.Children.toArray(listings.map((listing) => (
                                 <ListingItem listing={listing.data} id={listing.id} onDelete={() => onDelete(listing.id)} onEdit={() => onEdit(listing.id)} />
                             )))}
