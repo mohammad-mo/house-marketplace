@@ -34,7 +34,7 @@ const ForgotPassword = () =>
 
                 <main>
                     <form onSubmit={onSubmit}>
-                        <input autoFocus type="email" className="input w-full mb-8 rounded-2xl shadow-md" placeholder="Email" value={email} onChange={onChange}/>
+                        <input type="email" className="input w-full mb-8 rounded-2xl shadow-md" placeholder="Email" value={email} onChange={onChange}/>
                         <Link className="block cursor-pointer text-green-500 font-semibold text-right" to='/sign-in'>
                             Sign IN
                         </Link>
