@@ -55,7 +55,6 @@ const SignIn = () =>
           <main>
             <form onSubmit={onSubmit}>
               <input
-                autoFocus
                 type="email"
                 className="input w-full mb-4 rounded-2xl shadow-md"
                 placeholder="Email"
