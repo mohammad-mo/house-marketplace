@@ -67,7 +67,6 @@ const SignUp = () =>
           <main>
             <form onSubmit={onSubmit}>
               <input
-                autoFocus
                 type='text'
                 className='input w-full mb-4 rounded-2xl shadow-md'
                 placeholder='Name'
