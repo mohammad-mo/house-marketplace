@@ -20,6 +20,7 @@ const App = () =>
   return (
     <>
       <Router>
+      <main className='container mx-auto px-0 sm:px-3'>
         <Routes>
           <Route path='/' element={<Explore />} />
           <Route path='/offers' element={<Offers />} />
@@ -37,6 +38,7 @@ const App = () =>
           <Route path='/contact/:landlordId' element={<Contact />} />
         </Routes>
         <Navbar />
+        </main>
       </Router>
       <ToastContainer />
     </>
