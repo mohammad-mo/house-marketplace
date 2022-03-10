@@ -164,7 +164,6 @@ const EditListing = () =>
         {
             setLoading(false)
             toast.error('Images not uploaded')
-            return
         })
 
         const formDataCopy = {
